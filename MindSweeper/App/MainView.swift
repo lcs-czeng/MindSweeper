@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     var body: some View {
         NavigationStack {
             BoardView()
@@ -10,5 +10,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainView()
+        .environment(GameState())
 }

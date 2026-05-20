@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1624C4432FBDED4D00F8E513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1624C43F2FBDED4D00F8E513 /* Assets.xcassets */; };
-		1624C4442FBDED4D00F8E513 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4402FBDED4D00F8E513 /* ContentView.swift */; };
+		1624C4442FBDED4D00F8E513 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4402FBDED4D00F8E513 /* MainView.swift */; };
 		1624C4452FBDED4D00F8E513 /* MindSweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */; };
 		AA200001000000000000AA01 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001000000000000AA01 /* BoardModel.swift */; };
 		AA200002000000000000AA02 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002000000000000AA02 /* DeckManager.swift */; };
@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		1624C4312FBDED2500F8E513 /* MindSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1624C43F2FBDED4D00F8E513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1624C4402FBDED4D00F8E513 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1624C4402FBDED4D00F8E513 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindSweeperApp.swift; sourceTree = "<group>"; };
 		AA100001000000000000AA01 /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
 		AA100002000000000000AA02 /* DeckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManager.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */,
-				1624C4402FBDED4D00F8E513 /* ContentView.swift */,
+				1624C4402FBDED4D00F8E513 /* MainView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -209,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1624C4442FBDED4D00F8E513 /* ContentView.swift in Sources */,
+				1624C4442FBDED4D00F8E513 /* MainView.swift in Sources */,
 				1624C4452FBDED4D00F8E513 /* MindSweeperApp.swift in Sources */,
 				AA200001000000000000AA01 /* BoardModel.swift in Sources */,
 				AA200002000000000000AA02 /* DeckManager.swift in Sources */,
