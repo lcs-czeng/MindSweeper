@@ -9,13 +9,58 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            FocusView()
+                .tabItem {
+                    Label("Focus", systemImage: "brain.head.profile")
+                }
+            TasksView()
+                .tabItem {
+                    Label("Tasks", systemImage: "checklist")
+                }
+            HistoryView()
+                .tabItem {
+                    Label("History", systemImage: "chart.bar.fill")
+                }
         }
-        .padding()
+    }
+}
+
+// MARK: - Placeholder Tabs
+
+struct FocusView: View {
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                Image(systemName: "brain.head.profile")
+                    .font(.system(size: 64))
+                    .foregroundStyle(.tint)
+                Text("Focus Session")
+                    .font(.title2)
+                    .foregroundStyle(.secondary)
+            }
+            .navigationTitle("MindSweeper")
+        }
+    }
+}
+
+struct TasksView: View {
+    var body: some View {
+        NavigationStack {
+            Text("Tasks go here")
+                .foregroundStyle(.secondary)
+                .navigationTitle("Tasks")
+        }
+    }
+}
+
+struct HistoryView: View {
+    var body: some View {
+        NavigationStack {
+            Text("Session history goes here")
+                .foregroundStyle(.secondary)
+                .navigationTitle("History")
+        }
     }
 }
 
