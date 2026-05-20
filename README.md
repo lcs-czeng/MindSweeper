@@ -26,4 +26,6 @@ MindSweeper/
 
 ## Team
 
-- 曾梓恒
+- Courage
+- Thomas
+- Michael
