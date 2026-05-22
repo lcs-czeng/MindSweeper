@@ -25,10 +25,6 @@ Packages/
 *.resolved
 Package.pins
 
-# CocoaPods
-Pods/
-Podfile.lock
-
 # macOS
 .DS_Store
 .AppleDouble

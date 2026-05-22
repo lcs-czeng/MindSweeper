@@ -8,15 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		1624C4432FBDED4D00F8E513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1624C43F2FBDED4D00F8E513 /* Assets.xcassets */; };
-		1624C4442FBDED4D00F8E513 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4402FBDED4D00F8E513 /* ContentView.swift */; };
+		1624C4442FBDED4D00F8E513 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4402FBDED4D00F8E513 /* MainView.swift */; };
 		1624C4452FBDED4D00F8E513 /* MindSweeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */; };
+		AA200001000000000000AA01 /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001000000000000AA01 /* BoardModel.swift */; };
+		AA200002000000000000AA02 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002000000000000AA02 /* DeckManager.swift */; };
+		AA200003000000000000AA03 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100003000000000000AA03 /* GameState.swift */; };
+		AA200004000000000000AA04 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004000000000000AA04 /* Card.swift */; };
+		AA200005000000000000AA05 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100005000000000000AA05 /* Cell.swift */; };
+		AA200006000000000000AA06 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100006000000000000AA06 /* BoardView.swift */; };
+		AA200007000000000000AA07 /* QuestionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100007000000000000AA07 /* QuestionOverlay.swift */; };
+		AA200008000000000000AA08 /* MathDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100008000000000000AA08 /* MathDeck.swift */; };
+		AA200009000000000000AA09 /* HistoryDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100009000000000000AA09 /* HistoryDeck.swift */; };
+		AA20000A000000000000AA0A /* ScienceDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10000A000000000000AA0A /* ScienceDeck.swift */; };
+		AA20000B000000000000AA0B /* VocabDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10000B000000000000AA0B /* VocabDeck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1624C4312FBDED2500F8E513 /* MindSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1624C43F2FBDED4D00F8E513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1624C4402FBDED4D00F8E513 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1624C4402FBDED4D00F8E513 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindSweeperApp.swift; sourceTree = "<group>"; };
+		AA100001000000000000AA01 /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		AA100002000000000000AA02 /* DeckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManager.swift; sourceTree = "<group>"; };
+		AA100003000000000000AA03 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		AA100004000000000000AA04 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		AA100005000000000000AA05 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		AA100006000000000000AA06 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		AA100007000000000000AA07 /* QuestionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOverlay.swift; sourceTree = "<group>"; };
+		AA100008000000000000AA08 /* MathDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathDeck.swift; sourceTree = "<group>"; };
+		AA100009000000000000AA09 /* HistoryDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDeck.swift; sourceTree = "<group>"; };
+		AA10000A000000000000AA0A /* ScienceDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceDeck.swift; sourceTree = "<group>"; };
+		AA10000B000000000000AA0B /* VocabDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabDeck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,10 +72,69 @@
 			isa = PBXGroup;
 			children = (
 				1624C43F2FBDED4D00F8E513 /* Assets.xcassets */,
-				1624C4402FBDED4D00F8E513 /* ContentView.swift */,
-				1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */,
+				AA000001000000000000AA01 /* App */,
+				AA000002000000000000AA02 /* Game */,
+				AA000003000000000000AA03 /* Questions */,
+				AA000004000000000000AA04 /* Views */,
+				AA000005000000000000AA05 /* Models */,
+				AA000006000000000000AA06 /* Data */,
 			);
 			path = MindSweeper;
+			sourceTree = "<group>";
+		};
+		AA000001000000000000AA01 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1624C4412FBDED4D00F8E513 /* MindSweeperApp.swift */,
+				1624C4402FBDED4D00F8E513 /* MainView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		AA000002000000000000AA02 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				AA100001000000000000AA01 /* BoardModel.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		AA000003000000000000AA03 /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				AA100002000000000000AA02 /* DeckManager.swift */,
+			);
+			path = Questions;
+			sourceTree = "<group>";
+		};
+		AA000004000000000000AA04 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA100006000000000000AA06 /* BoardView.swift */,
+				AA100007000000000000AA07 /* QuestionOverlay.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA000005000000000000AA05 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA100003000000000000AA03 /* GameState.swift */,
+				AA100004000000000000AA04 /* Card.swift */,
+				AA100005000000000000AA05 /* Cell.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA000006000000000000AA06 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AA100008000000000000AA08 /* MathDeck.swift */,
+				AA100009000000000000AA09 /* HistoryDeck.swift */,
+				AA10000A000000000000AA0A /* ScienceDeck.swift */,
+				AA10000B000000000000AA0B /* VocabDeck.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +209,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1624C4442FBDED4D00F8E513 /* ContentView.swift in Sources */,
+				1624C4442FBDED4D00F8E513 /* MainView.swift in Sources */,
 				1624C4452FBDED4D00F8E513 /* MindSweeperApp.swift in Sources */,
+				AA200001000000000000AA01 /* BoardModel.swift in Sources */,
+				AA200002000000000000AA02 /* DeckManager.swift in Sources */,
+				AA200003000000000000AA03 /* GameState.swift in Sources */,
+				AA200004000000000000AA04 /* Card.swift in Sources */,
+				AA200005000000000000AA05 /* Cell.swift in Sources */,
+				AA200006000000000000AA06 /* BoardView.swift in Sources */,
+				AA200007000000000000AA07 /* QuestionOverlay.swift in Sources */,
+				AA200008000000000000AA08 /* MathDeck.swift in Sources */,
+				AA200009000000000000AA09 /* HistoryDeck.swift in Sources */,
+				AA20000A000000000000AA0A /* ScienceDeck.swift in Sources */,
+				AA20000B000000000000AA0B /* VocabDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

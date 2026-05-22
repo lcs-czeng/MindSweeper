@@ -1,17 +1,13 @@
-//
-//  MindSweeperApp.swift
-//  MindSweeper
-//
-//  Created by 曾梓恒 on 5/20/26.
-//
-
 import SwiftUI
 
 @main
 struct MindSweeperApp: App {
+    @State private var gameState = GameState()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .environment(gameState)
         }
     }
 }
