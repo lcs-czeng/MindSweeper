@@ -55,6 +55,15 @@ struct BoardModel {
         return count
     }
 
+    // MARK: - Flag
+
+    /// Toggle the flag on an unrevealed cell.
+    mutating func toggleFlag(row: Int, col: Int) {
+        guard row >= 0, row < rows, col >= 0, col < cols else { return }
+        guard !cells[row][col].isRevealed else { return }
+        cells[row][col].isFlagged.toggle()
+    }
+
     // MARK: - Reveal
 
     /// Flood-fill reveal from (row, col). Stops at cells with neighborCount > 0.
