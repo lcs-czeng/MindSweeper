@@ -21,6 +21,7 @@
 		AA200009000000000000AA09 /* HistoryDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100009000000000000AA09 /* HistoryDeck.swift */; };
 		AA20000A000000000000AA0A /* ScienceDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10000A000000000000AA0A /* ScienceDeck.swift */; };
 		AA20000B000000000000AA0B /* VocabDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA10000B000000000000AA0B /* VocabDeck.swift */; };
+		AF9CE1522FC219D60026C414 /* PresetDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9CE1512FC219C90026C414 /* PresetDecks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		AA100009000000000000AA09 /* HistoryDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDeck.swift; sourceTree = "<group>"; };
 		AA10000A000000000000AA0A /* ScienceDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceDeck.swift; sourceTree = "<group>"; };
 		AA10000B000000000000AA0B /* VocabDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabDeck.swift; sourceTree = "<group>"; };
+		AF9CE1512FC219C90026C414 /* PresetDecks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDecks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		AA000006000000000000AA06 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				AF9CE1512FC219C90026C414 /* PresetDecks.swift */,
 				AA100008000000000000AA08 /* MathDeck.swift */,
 				AA100009000000000000AA09 /* HistoryDeck.swift */,
 				AA10000A000000000000AA0A /* ScienceDeck.swift */,
@@ -212,6 +215,7 @@
 				1624C4442FBDED4D00F8E513 /* MainView.swift in Sources */,
 				1624C4452FBDED4D00F8E513 /* MindSweeperApp.swift in Sources */,
 				AA200001000000000000AA01 /* BoardModel.swift in Sources */,
+				AF9CE1522FC219D60026C414 /* PresetDecks.swift in Sources */,
 				AA200002000000000000AA02 /* DeckManager.swift in Sources */,
 				AA200003000000000000AA03 /* GameState.swift in Sources */,
 				AA200004000000000000AA04 /* Card.swift in Sources */,
