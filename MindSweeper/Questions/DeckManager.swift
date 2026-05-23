@@ -5,9 +5,15 @@ struct DeckManager {
 
     // MARK: - Loading
 
-    /// Load a preset deck by subject.
+    /// Load a preset deck by subject and shuffle the cards.
     mutating func loadPreset(_ subject: Subject) {
-        // TODO: assign the matching static deck from Data/
+        switch subject {
+        case .math:        cards = DeckManager.mathCards
+        case .history:     cards = DeckManager.historyCards
+        case .science:     cards = DeckManager.scienceCards
+        case .vocabulary:  cards = DeckManager.vocabCards
+        }
+        cards.shuffle()
     }
 
     enum Subject: String, CaseIterable {
@@ -18,21 +24,22 @@ struct DeckManager {
 
     /// Draw a random card and remove it from the pool. Returns nil when empty.
     mutating func drawCard() -> Card? {
-        // TODO: implement
-        return nil
+        guard !cards.isEmpty else { return nil }
+        let index = Int.random(in: 0..<cards.count)
+        return cards.remove(at: index)
     }
 
     // MARK: - Answer Checking
 
-    /// Normalise a raw answer string (trim, lowercase, collapse whitespace).
+    /// Normalise a raw answer string — trim, lowercase, collapse whitespace.
     func normalizeAnswer(_ raw: String) -> String {
-        // TODO: implement
-        return raw.trimmingCharacters(in: .whitespaces).lowercased()
+        raw.trimmingCharacters(in: .whitespaces)
+           .lowercased()
+           .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
     }
 
     /// Return true if the player's answer matches the card's answer.
     func checkAnswer(card: Card, playerAnswer: String) -> Bool {
-        // TODO: implement
-        return normalizeAnswer(playerAnswer) == normalizeAnswer(card.answer)
+        normalizeAnswer(playerAnswer) == normalizeAnswer(card.answer)
     }
 }
