@@ -5,6 +5,7 @@ struct GameOverView: View {
     // MARK: - Stored properties
 
     var gameState: GameState
+    @Environment(\.dismiss) private var dismiss
 
     // MARK: - Computed properties
 
@@ -70,6 +71,7 @@ struct GameOverView: View {
     private var playAgainButton: some View {
         Button {
             gameState.reset()
+            dismiss()
         } label: {
             VStack(spacing: 12) {
                 Image(systemName: "arrow.counterclockwise")
