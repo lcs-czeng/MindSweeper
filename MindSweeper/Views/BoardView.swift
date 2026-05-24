@@ -1,7 +1,15 @@
 import SwiftUI
 
 struct BoardView: View {
-    @Environment(GameState.self) private var gameState
+
+    // MARK: - Stored properties
+
+    let subject: DeckManager.Subject
+    var gameState: GameState
+
+    @State private var deckManager = DeckManager()
+
+    // MARK: - Body
 
     var body: some View {
         // TODO: render the MindSweeper grid with tap and long-press handling
@@ -12,10 +20,15 @@ struct BoardView: View {
             Text("Board — coming soon")
                 .foregroundStyle(.secondary)
         }
+        .onAppear {
+            deckManager.loadPreset(subject)
+        }
+        .navigationTitle(subject.rawValue.capitalized)
     }
 }
 
 #Preview {
-    BoardView()
-        .environment(GameState())
+    NavigationStack {
+        BoardView(subject: .math, gameState: GameState())
+    }
 }
