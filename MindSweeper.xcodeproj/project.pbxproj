@@ -20,6 +20,8 @@
 		AF9CE1522FC219D60026C414 /* PresetDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9CE1512FC219C90026C414 /* PresetDecks.swift */; };
 		BB000002000000000000BB02 /* DeckManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003000000000000BB03 /* DeckManagerTests.swift */; };
 		CC000001000000000000CC01 /* SubjectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000002000000000000CC02 /* SubjectPickerView.swift */; };
+		DD000003000000000000DD03 /* BoardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000001000000000000DD01 /* BoardModelTests.swift */; };
+		DD000004000000000000DD04 /* GameStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD000002000000000000DD02 /* GameStateTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		BB000001000000000000BB01 /* MindSweeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindSweeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB000003000000000000BB03 /* DeckManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManagerTests.swift; sourceTree = "<group>"; };
 		CC000002000000000000CC02 /* SubjectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectPickerView.swift; sourceTree = "<group>"; };
+		DD000001000000000000DD01 /* BoardModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModelTests.swift; sourceTree = "<group>"; };
+		DD000002000000000000DD02 /* GameStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +107,9 @@
 		BB000007000000000000BB07 /* MindSweeperTests */ = {
 			isa = PBXGroup;
 			children = (
+				DD000001000000000000DD01 /* BoardModelTests.swift */,
 				BB000003000000000000BB03 /* DeckManagerTests.swift */,
+				DD000002000000000000DD02 /* GameStateTests.swift */,
 			);
 			path = MindSweeperTests;
 			sourceTree = "<group>";
@@ -275,7 +281,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD000003000000000000DD03 /* BoardModelTests.swift in Sources */,
 				BB000002000000000000BB02 /* DeckManagerTests.swift in Sources */,
+				DD000004000000000000DD04 /* GameStateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
