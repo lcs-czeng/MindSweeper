@@ -14,6 +14,12 @@ struct SubjectPickerView: View {
             subjectGrid
         }
         .padding()
+        .fullScreenCover(isPresented: Binding(
+            get: { gameState.status == .won || gameState.status == .lost },
+            set: { _ in }
+        )) {
+            GameOverView(gameState: gameState)
+        }
     }
 
     // MARK: - Subviews
