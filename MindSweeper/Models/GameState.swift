@@ -4,8 +4,6 @@ import Observation
 @Observable
 class GameState {
 
-    // MARK: - Nested Types
-
     enum Status {
         case idle, playing, won, lost
     }
@@ -14,8 +12,6 @@ class GameState {
         let row: Int
         let col: Int
     }
-
-    // MARK: - Properties
 
     private(set) var board: BoardModel
     private let mineCount: Int
@@ -26,10 +22,6 @@ class GameState {
     var pendingCell: CellPosition? = nil
     var status: Status = .idle
 
-    // TODO: add DeckManager reference when issue #5 is merged
-
-    // MARK: - Init
-
     init(rows: Int = 9, cols: Int = 9, mineCount: Int = 10) {
         self.mineCount = mineCount
         var b = BoardModel(rows: rows, cols: cols)
@@ -39,32 +31,35 @@ class GameState {
 
     // MARK: - Cell Actions
 
-    /// Called when the player taps an unrevealed cell.
-    /// Places mines on the first tap (guaranteeing this cell is safe) and sets it as pending.
     func cellTapped(row: Int, col: Int) {
         guard status == .idle || status == .playing else { return }
         guard !board.cells[row][col].isRevealed,
               !board.cells[row][col].isFlagged else { return }
 
-        // First tap — place mines and start the timer
         if status == .idle {
             board.placeMines(count: mineCount, safe: (row: row, col: col))
             startTime = Date()
             status = .playing
         }
 
+        // NEW: Check if the player stepped on a bomb!
+        if board.cells[row][col].isMine {
+            board.revealAllBombs()               // Reveal ALL bombs to the player
+            status = .lost                       // Transition to lost immediately
+            pendingCell = nil                    // Clear any questions
+            return
+        }
+
         pendingCell = CellPosition(row: row, col: col)
     }
 
-    /// Toggle a flag on an unrevealed cell (long press).
     func toggleFlag(row: Int, col: Int) {
-        guard status == .playing else { return }
+        guard status == .idle || status == .playing else { return }
         board.toggleFlag(row: row, col: col)
     }
 
     // MARK: - Answer Actions
 
-    /// Correct answer — reveal the pending cell and award points.
     func applyCorrectAnswer() {
         guard let cell = pendingCell else { return }
         board.cascadeReveal(row: cell.row, col: cell.col)
@@ -73,19 +68,18 @@ class GameState {
         checkWinCondition()
     }
 
-    /// Wrong answer — lose a life. Transitions to .lost when lives hit 0.
     func applyWrongAnswer() {
         guard pendingCell != nil else { return }
         pendingCell = nil
         lives -= 1
         if lives <= 0 {
             status = .lost
+            board.revealAllBombs() // Also show all bombs if they run out of lives!
         }
     }
 
     // MARK: - Timer
 
-    /// Elapsed time in seconds since the first tap.
     var elapsedSeconds: Int {
         guard let start = startTime else { return 0 }
         return Int(Date().timeIntervalSince(start))
@@ -93,7 +87,6 @@ class GameState {
 
     // MARK: - Private
 
-    /// Check if all non-mine cells are revealed — if so, the player wins.
     private func checkWinCondition() {
         let allSafeCellsRevealed = board.cells.allSatisfy { row in
             row.allSatisfy { cell in cell.isMine || cell.isRevealed }
@@ -103,3 +96,4 @@ class GameState {
         }
     }
 }
+
