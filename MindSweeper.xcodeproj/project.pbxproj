@@ -19,6 +19,7 @@
 		AA200007000000000000AA07 /* QuestionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100007000000000000AA07 /* QuestionOverlay.swift */; };
 		AF9CE1522FC219D60026C414 /* PresetDecks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9CE1512FC219C90026C414 /* PresetDecks.swift */; };
 		BB000002000000000000BB02 /* DeckManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB000003000000000000BB03 /* DeckManagerTests.swift */; };
+		CC000001000000000000CC01 /* SubjectPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000002000000000000CC02 /* SubjectPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		AF9CE1512FC219C90026C414 /* PresetDecks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDecks.swift; sourceTree = "<group>"; };
 		BB000001000000000000BB01 /* MindSweeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindSweeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB000003000000000000BB03 /* DeckManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManagerTests.swift; sourceTree = "<group>"; };
+		CC000002000000000000CC02 /* SubjectPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,7 @@
 			children = (
 				AA100006000000000000AA06 /* BoardView.swift */,
 				AA100007000000000000AA07 /* QuestionOverlay.swift */,
+				CC000002000000000000CC02 /* SubjectPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				AA200006000000000000AA06 /* BoardView.swift in Sources */,
 				AA200007000000000000AA07 /* QuestionOverlay.swift in Sources */,
 				AF9CE1522FC219D60026C414 /* PresetDecks.swift in Sources */,
+				CC000001000000000000CC01 /* SubjectPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
