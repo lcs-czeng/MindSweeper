@@ -91,6 +91,20 @@ class GameState {
         return Int(Date().timeIntervalSince(start))
     }
 
+    // MARK: - Reset
+
+    /// Reset the game back to its initial state, ready for a new round.
+    func reset() {
+        var freshBoard = BoardModel(rows: board.rows, cols: board.cols)
+        freshBoard.createGrid()
+        board = freshBoard
+        lives = 3
+        score = 0
+        startTime = nil
+        pendingCell = nil
+        status = .idle
+    }
+
     // MARK: - Private
 
     /// Check if all non-mine cells are revealed — if so, the player wins.

@@ -8,6 +8,7 @@ struct BoardView: View {
     var gameState: GameState
 
     @State private var deckManager = DeckManager()
+    @Environment(\.dismiss) private var dismiss
 
     // MARK: - Body
 
@@ -24,6 +25,17 @@ struct BoardView: View {
             deckManager.loadPreset(subject)
         }
         .navigationTitle(subject.rawValue.capitalized)
+        .fullScreenCover(
+            isPresented: Binding(
+                get: { gameState.status == .won || gameState.status == .lost },
+                set: { _ in }
+            ),
+            onDismiss: {
+                dismiss()
+            }
+        ) {
+            GameOverView(gameState: gameState)
+        }
     }
 }
 
