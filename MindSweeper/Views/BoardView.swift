@@ -2,19 +2,23 @@ import SwiftUI
 import Combine
 
 struct BoardView: View {
-    var gameState: GameState
+
+    // MARK: - Stored properties
+
     let subject: DeckManager.Subject
-    
+    var gameState: GameState
+
     @State private var deck = DeckManager()
     @State private var currentCard: Card?
-    
     @State private var isShowingQuestion = false
     @State private var playerAnswer = ""
-    
     @State private var timeString = "00:00"
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @Environment(\.dismiss) private var dismiss
 
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 9)
+
+    // MARK: - Body
 
     var body: some View {
         VStack(spacing: 20) {
@@ -28,7 +32,7 @@ struct BoardView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
-                
+
                 if gameState.status == .lost {
                     Text("💥 LOST")
                         .font(.title2)
@@ -52,13 +56,13 @@ struct BoardView: View {
 
             // MARK: - Grid
             let totalCells = gameState.board.rows * gameState.board.cols
-            
+
             LazyVGrid(columns: columns, spacing: 4) {
                 ForEach(0..<totalCells, id: \.self) { index in
                     let row = index / gameState.board.cols
                     let col = index % gameState.board.cols
                     let cell = gameState.board.cells[row][col]
-                    
+
                     CellTile(cell: cell)
                         .onTapGesture {
                             handleTap(row: row, col: col)
@@ -69,12 +73,13 @@ struct BoardView: View {
                 }
             }
             .padding(.horizontal, 12)
-            
+
             Spacer()
         }
         .onAppear {
             deck.loadPreset(subject)
         }
+        .navigationTitle(subject.rawValue.capitalized)
         .onReceive(timer) { _ in
             if gameState.status == .playing {
                 let seconds = gameState.elapsedSeconds
@@ -97,26 +102,34 @@ struct BoardView: View {
                 )
             }
         }
-        .fullScreenCover(isPresented: Binding(
-            get: { gameState.status == .lost || gameState.status == .won },
-            set: { _ in }
-        )) {
+        .fullScreenCover(
+            isPresented: Binding(
+                get: { gameState.status == .won || gameState.status == .lost },
+                set: { _ in }
+            ),
+            onDismiss: {
+                gameState.reset()
+                dismiss()
+            }
+        ) {
             GameOverView(gameState: gameState)
         }
     }
-    
+
+    // MARK: - Tap Handling
+
     private func handleTap(row: Int, col: Int) {
         let cell = gameState.board.cells[row][col]
         guard !cell.isRevealed, !cell.isFlagged else { return }
-        
+
         gameState.cellTapped(row: row, col: col)
-        
+
         guard gameState.status != .lost else { return }
-        
+
         if deck.cards.isEmpty {
             deck.loadPreset(subject)
         }
-        
+
         if let card = deck.drawCard() {
             currentCard = card
             playerAnswer = ""
@@ -126,9 +139,10 @@ struct BoardView: View {
 }
 
 // MARK: - Cell Subview
+
 struct CellTile: View {
     let cell: Cell
-    
+
     var body: some View {
         ZStack {
             Rectangle()
@@ -137,7 +151,7 @@ struct CellTile: View {
                       : Color.gray.opacity(0.6))
                 .aspectRatio(1.0, contentMode: .fill)
                 .cornerRadius(4)
-            
+
             if cell.isRevealed {
                 if cell.isMine {
                     Text("💣")
@@ -155,7 +169,7 @@ struct CellTile: View {
             }
         }
     }
-    
+
     private func numberColor(_ count: Int) -> Color {
         switch count {
         case 1: return .blue
@@ -171,5 +185,7 @@ struct CellTile: View {
 }
 
 #Preview {
-    BoardView(gameState: GameState(), subject: .math)
+    NavigationStack {
+        BoardView(subject: .math, gameState: GameState())
+    }
 }

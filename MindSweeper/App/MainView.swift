@@ -1,9 +1,16 @@
 import SwiftUI
 
 struct MainView: View {
+
+    // MARK: - Stored properties
+
+    @State var gameState = GameState()
+
+    // MARK: - Body
+
     var body: some View {
         NavigationStack {
-            BoardView()
+            SubjectPickerView(gameState: gameState)
                 .navigationTitle("MindSweeper")
         }
     }
@@ -11,5 +18,4 @@ struct MainView: View {
 
 #Preview {
     MainView()
-        .environment(GameState())
 }
