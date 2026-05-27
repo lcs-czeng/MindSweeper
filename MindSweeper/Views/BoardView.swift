@@ -2,21 +2,18 @@ import SwiftUI
 import Combine
 
 struct BoardView: View {
-    @Environment(GameState.self) private var gameState
+    var gameState: GameState
+    let subject: DeckManager.Subject
     
-    // Manage local deck for drawing questions
     @State private var deck = DeckManager()
     @State private var currentCard: Card?
     
-    // Sheet presentation and answer state
     @State private var isShowingQuestion = false
     @State private var playerAnswer = ""
     
-    // HUD Timer
     @State private var timeString = "00:00"
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
-    // Explicitly define 9 flexible columns for a 9x9 layout
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 9)
 
     var body: some View {
@@ -31,26 +28,35 @@ struct BoardView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 Spacer()
-                Text("⏱ \(timeString)")
-                    .font(.title2)
-                    .fontWeight(.bold)
+                
+                if gameState.status == .lost {
+                    Text("💥 LOST")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.red)
+                } else if gameState.status == .won {
+                    Text("🏆 WON")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.green)
+                } else {
+                    Text("⏱ \(timeString)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                }
             }
             .padding(.horizontal)
             .padding(.top, 10)
 
             Spacer()
 
-            // MARK: - 9x9 Flattened Grid
-            // Using a single flat loop fixes the SwiftUI multi-row rendering bug
+            // MARK: - Grid
             let totalCells = gameState.board.rows * gameState.board.cols
             
             LazyVGrid(columns: columns, spacing: 4) {
                 ForEach(0..<totalCells, id: \.self) { index in
-                    // Calculate the exact row and column from the flat index
                     let row = index / gameState.board.cols
                     let col = index % gameState.board.cols
-                    
-                    // Safely fetch the cell from the 2D matrix
                     let cell = gameState.board.cells[row][col]
                     
                     CellTile(cell: cell)
@@ -67,7 +73,7 @@ struct BoardView: View {
             Spacer()
         }
         .onAppear {
-            deck.loadPreset(.math)
+            deck.loadPreset(subject)
         }
         .onReceive(timer) { _ in
             if gameState.status == .playing {
@@ -75,7 +81,6 @@ struct BoardView: View {
                 timeString = String(format: "%02d:%02d", seconds / 60, seconds % 60)
             }
         }
-        // MARK: - Question Sheet
         .sheet(isPresented: $isShowingQuestion) {
             if let card = currentCard {
                 QuestionOverlay(
@@ -92,17 +97,24 @@ struct BoardView: View {
                 )
             }
         }
+        .fullScreenCover(isPresented: Binding(
+            get: { gameState.status == .lost || gameState.status == .won },
+            set: { _ in }
+        )) {
+            GameOverView(gameState: gameState)
+        }
     }
     
-    // MARK: - Tap Handling
     private func handleTap(row: Int, col: Int) {
         let cell = gameState.board.cells[row][col]
         guard !cell.isRevealed, !cell.isFlagged else { return }
         
         gameState.cellTapped(row: row, col: col)
         
+        guard gameState.status != .lost else { return }
+        
         if deck.cards.isEmpty {
-            deck.loadPreset(.math)
+            deck.loadPreset(subject)
         }
         
         if let card = deck.drawCard() {
@@ -120,15 +132,16 @@ struct CellTile: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(cell.isRevealed ? Color(UIColor.systemGray5) : Color.gray.opacity(0.6))
-                .aspectRatio(1.0, contentMode: .fill) // Keeps tiles perfectly square
+                .fill(cell.isRevealed
+                      ? (cell.isMine ? Color.red.opacity(0.4) : Color(UIColor.systemGray5))
+                      : Color.gray.opacity(0.6))
+                .aspectRatio(1.0, contentMode: .fill)
                 .cornerRadius(4)
             
             if cell.isRevealed {
                 if cell.isMine {
-                    Image(systemName: "burst.fill")
-                        .font(.headline)
-                        .foregroundColor(.red)
+                    Text("💣")
+                        .font(.title2)
                 } else if cell.neighborCount > 0 {
                     Text("\(cell.neighborCount)")
                         .font(.system(.headline, design: .rounded))
@@ -158,7 +171,5 @@ struct CellTile: View {
 }
 
 #Preview {
-    BoardView()
-        .environment(GameState())
+    BoardView(gameState: GameState(), subject: .math)
 }
-
