@@ -18,6 +18,8 @@ class GameState {
 
     var lives: Int = 3
     var score: Int = 0
+    var correctAnswers: Int = 0
+    var wrongAnswers: Int = 0
     var startTime: Date? = nil
     var pendingCell: CellPosition? = nil
     var status: Status = .idle
@@ -64,6 +66,7 @@ class GameState {
         guard let cell = pendingCell else { return }
         board.cascadeReveal(row: cell.row, col: cell.col)
         score += 10
+        correctAnswers += 1
         pendingCell = nil
         checkWinCondition()
     }
@@ -71,6 +74,7 @@ class GameState {
     func applyWrongAnswer() {
         guard pendingCell != nil else { return }
         pendingCell = nil
+        wrongAnswers += 1
         lives -= 1
         if lives <= 0 {
             status = .lost
@@ -94,6 +98,8 @@ class GameState {
         board = freshBoard
         lives = 3
         score = 0
+        correctAnswers = 0
+        wrongAnswers = 0
         startTime = nil
         pendingCell = nil
         status = .idle

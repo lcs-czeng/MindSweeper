@@ -27,6 +27,7 @@ struct GameOverView: View {
         VStack(spacing: 24) {
             header
             scoreCard
+            answerSummary
             Spacer()
             playAgainButton
         }
@@ -68,6 +69,50 @@ struct GameOverView: View {
         )
     }
 
+    private var answerSummary: some View {
+        HStack(spacing: 16) {
+            VStack(spacing: 8) {
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.white)
+                Text("Correct")
+                    .font(.caption)
+                    .foregroundStyle(.white.opacity(0.8))
+                Text("\(gameState.correctAnswers)")
+                    .font(.title2)
+                    .bold()
+                    .foregroundStyle(.white)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.green.gradient)
+                    .shadow(color: Color.green.opacity(0.4), radius: 6, x: 0, y: 3)
+            )
+
+            VStack(spacing: 8) {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 32))
+                    .foregroundStyle(.white)
+                Text("Wrong")
+                    .font(.caption)
+                    .foregroundStyle(.white.opacity(0.8))
+                Text("\(gameState.wrongAnswers)")
+                    .font(.title2)
+                    .bold()
+                    .foregroundStyle(.white)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.red.gradient)
+                    .shadow(color: Color.red.opacity(0.4), radius: 6, x: 0, y: 3)
+            )
+        }
+    }
+
     private var playAgainButton: some View {
         Button {
             gameState.reset()
@@ -95,6 +140,8 @@ struct GameOverView: View {
 #Preview {
     let wonState = GameState()
     wonState.score = 80
+    wonState.correctAnswers = 8
+    wonState.wrongAnswers = 2
     wonState.status = .won
     return GameOverView(gameState: wonState)
 }
